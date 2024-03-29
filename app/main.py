@@ -7,11 +7,12 @@ import json
 import requests
 import boto3
 import os
-import MYSQLdb
+import MySQLdb
 from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static", html=True), name="static")
+#app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 DBHOST = os.environ.get('DBHOST')
 DBUSER = os.environ.get('DBUSER')
@@ -35,8 +36,9 @@ def github_user_repose(user):
     body = json.loads(response.text)
     return {"repos": body}
 
-
-
+@app.get("/artistry/{anything}")
+def best_artist(anything):
+    return {'best artist': 'daft punk'}
 
 # Endpoints and Methods
 # /blah - endpoint
