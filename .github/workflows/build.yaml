@@ -1,12 +1,13 @@
 name: container-build
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.actor }}/fastapi-demo
+  IMAGE_NAME: jackstechersmith/fastapi-demo
   IMAGE_TAG: 1.${{ github.run_number }} # GITHUB_RUN_NUMBER
 
 jobs:
