@@ -44,7 +44,7 @@ def best_artist(anything):
 def best_food(anything):
     return {'best food': 'pizza'}
 
-@app.get("/whatlab/{anything}")
+@app.get("/whatlabisthis/{anything}")
 def this_lab(anything):
     return {'this is': 'lab 6'}
 
