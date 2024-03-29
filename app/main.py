@@ -40,6 +40,10 @@ def github_user_repose(user):
 def best_artist(anything):
     return {'best artist': 'daft punk'}
 
+@app.get("/food/{anything}")
+def best_food(anything):
+    return {'best food': 'pizza'}
+
 # Endpoints and Methods
 # /blah - endpoint
 # GET/POST/DELETE/PATCH - methods
@@ -57,6 +61,7 @@ def divide_me(number_1: int, number_2: int):
     division = number_1 / number_2
     return {"division": division}
 
+
 ## Parameters
 # Introduce parameter data types and defaults from the Optional library
 @app.get("/items/{item_id}")
@@ -68,7 +73,6 @@ def read_items(item_id: int, q: str = None, s: str = None):
     # - another api (internal)
     # - another api (external)
     return {"item_id": item_id, "q": q, "s": s}
-
 
 ## Data Modeling
 # Model data you are expecting.
