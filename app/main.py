@@ -44,6 +44,10 @@ def best_artist(anything):
 def best_food(anything):
     return {'best food': 'pizza'}
 
+@app.get("/whatlab/{anything}")
+def this_lab(anything):
+    return {'this is': 'lab 6'}
+
 # Endpoints and Methods
 # /blah - endpoint
 # GET/POST/DELETE/PATCH - methods
