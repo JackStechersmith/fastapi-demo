@@ -12,7 +12,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
-#app.mount("/static", StaticFiles(directory="static", html=True), name="static")
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 DBHOST = os.environ.get('DBHOST')
 DBUSER = os.environ.get('DBUSER')
@@ -124,3 +124,22 @@ def fetch_buckets():
      response = s3.list_buckets()
      buckets = response['Buckets']
      return {"buckets": buckets}
+
+@app.get("/albums")
+def get_albums():
+     db = MySQLdb.connect(host=DBHOST, user=DBUSER, passwd=DBPASS, db=DB)
+     cursor = db.cursor(MySQLdb.cursors.DictCursor)
+     cursor.execute("""SELECT * FROM albums ORDER BY name""")
+     results = cursor.fetchall()
+     db.close()
+     return results
+
+@app.get("/albums/{id}")
+def get_albums(id):
+     db = MySQLdb.connect(host=DBHOST, user=DBUSER, passwd=DBPASS, db=DB)
+     cursor = db.cursor(MySQLdb.cursors.DictCursor)
+     cursor.execute("SELECT * FROM albums WHERE id=" + id)
+     results = cursor.fetchall()
+     db.close()
+     return results
+
