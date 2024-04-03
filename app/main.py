@@ -142,4 +142,3 @@ def get_albums(id):
      results = cursor.fetchall()
      db.close()
      return results
-
